@@ -1,0 +1,2 @@
+class UserCannotOpenTable(Exception):
+    pass
