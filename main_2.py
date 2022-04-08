@@ -34,7 +34,7 @@ if __name__ == '__main__':
     persons = [p1, p2, p3]
 
     id_gen = IdGenerator()
-    persons_repo = UserRepository(id_gen)
+    persons_repo = UserRepository(id_gen, 'users_database.json')
 
     for p in persons:
         persons_repo.create(p)
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     products = [prod1, prod2, prod3, prod4]
 
     id_gen = IdGeneratorProd()
-    products_repo = ProductsRepository(id_gen)
+    products_repo = ProductsRepository(id_gen, 'products_db.json')
 
     for pr in products:
         products_repo.create(pr)
@@ -80,22 +80,48 @@ if __name__ == '__main__':
 
     print()
     print(table.get_formatted())
-    #
+
     invoice_repo = InvoiceRepository()
-    # inv1 = Bill(15000,table)
-    # invoice_repo.create(inv1)
-    #
-    #invoice_service = InvoiceService(tables_repo, invoice_repo)
+    inv1 = Bill(15000,table)
+    invoice_repo.create(inv1)
+
+    # invoice_service = InvoiceService(tables_repo, invoice_repo)
     # invoice_service.get_bill(14)
     # print()
     # print(invoice_repo.income)
     # print(waiter._invoicement)
     # print(waiter.get_formatted())
     # print_all(tables_repo)
+    #
+    # inv2 = Invoice(16000,table,'Racheti','Ivan Ivanov', '12312412412421')
+    # invoice_repo.create(inv2)
+    # invoice_service = InvoiceService(tables_repo, invoice_repo)
+    # invoice_service.get_invoice(14)
 
-    inv2 = Invoice(16000,table,'Racheti','Ivan Ivanov', '12312412412421')
-    invoice_repo.create(inv2)
-    invoice_service = InvoiceService(tables_repo, invoice_repo)
-    invoice_service.get_invoice(14)
+    #print_all(persons_repo)
+
+    # persons_repo.save()
+    # persons_repo.load()
+    # print('\n', 'After Loading:')
+    # print_all(persons_repo.find_all())
+
+    products_repo.save()
+    products_repo.load()
+    print('\n', 'After Loading: prods_repo')
+    print_all(products_repo.find_all())
+
+    #
+    tables_repo.save()
+    tables_repo.load()
+    print('\n', 'After Loading: tables_repo')
+    print_all(tables_repo.find_all())
+
+
+    #
+    # invoice_repo.save()
+    # invoice_repo.load()
+    # print('\n', 'After Loading: inv_repo')
+    # print_all(invoice_repo.find_all())
+
 
 

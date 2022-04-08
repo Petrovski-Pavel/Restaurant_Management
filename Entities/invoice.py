@@ -1,13 +1,13 @@
 from Entities.table import Table
-from Entities.users import Waiter
-from Repository.table_repository import TableRepository
-from Repository.user_repository import UserRepository
+
 
 
 class Invoicing:
-    def __init__(self, number, table: Table):
+    def __init__(self, number=None, table: Table = None):
         self.id = number
         self.table = table
+        self._module = self.__class__.__module__
+        self._class = self.__class__.__name__
 
     def get_formatted(self):
         return f'Invoice {self.__class__.__name__} number: {self.id} for table: {self.table._id} by waiter: {self.table.waiter.name}'
@@ -15,11 +15,11 @@ class Invoicing:
 
 
 class Bill(Invoicing):
-    def __init__(self, number, table: Table):
+    def __init__(self, number=None, table: Table=None):
         super().__init__(number, table)
 
 class Invoice(Invoicing):
-    def __init__(self, number, table: Table, company_name, customer_name, bank_account_number):
+    def __init__(self, number=None, table: Table=None, company_name=None, customer_name=None, bank_account_number=None):
         super().__init__(number, table)
         self.company_name = company_name
         self.customer_name = customer_name

@@ -1,12 +1,10 @@
 from Entities.products import Product
-from Repository.Repository import Repository
+from Repository.json_repository import JsonRepository
 from exceptions.entity_not_found_exc import EntityNotFoundException
 from util.func_utils import find_first, find_every
 
 
-class ProductsRepository(Repository):
-    def __init__(self, idGeneratorProd):
-        super().__init__(idGeneratorProd)
+class ProductsRepository(JsonRepository):
 
     def find_by_name(self, name: str) -> Product:
         return find_first(lambda p: p.name == name, self.find_all())

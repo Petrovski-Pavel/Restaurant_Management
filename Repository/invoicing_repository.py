@@ -2,14 +2,15 @@ from typing import Iterator
 
 
 from Repository.Repository import Repository
+from Repository.json_repository import JsonRepository
 
 from exceptions.entity_not_found_exc import EntityNotFoundException
 from exceptions.invoice_exceptins import InvoiceNotFoundException, InvoiceAlreadyCreated
 from util.func_utils import find_first
 
-class InvoiceRepository(Repository):
+class InvoiceRepository(JsonRepository):
     def __init__(self, idGenerator=None):
-        super().__init__(idGenerator)
+        super().__init__(idGenerator,db_filename='invoice_db.json')
         self.income = 0
 
     def create(self, invoice):

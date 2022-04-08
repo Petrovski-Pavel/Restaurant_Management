@@ -2,14 +2,15 @@
 from Entities.products import Product
 from Entities.table import Table
 from Repository.Repository import Repository
+from Repository.json_repository import JsonRepository
 from exceptions.entity_not_found_exc import EntityNotFoundException
 from exceptions.table_exception import TableAlreadyOpenedException
 from util.func_utils import find_first
 
 
-class TableRepository(Repository):
-    def __init__(self, table_id=None):
-        super().__init__(table_id)
+class TableRepository(JsonRepository):
+    def __init__(self, table_id=None, db_filename='table_db.json'):
+        super().__init__(table_id,db_filename)
 
     def create(self, entity):
         if entity._id not in self._entities:
@@ -31,6 +32,9 @@ class TableRepository(Repository):
         old.waiter.tables.remove(old)
         del self._entities[id]
         return old
+
+    def add_all(self, entities_iterable):
+        self._entities.update(map(lambda entity: (entity._id, entity), entities_iterable))
 
 
 

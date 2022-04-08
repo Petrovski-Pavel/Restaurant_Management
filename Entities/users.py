@@ -1,9 +1,13 @@
+
+
 class Users:
-    def __init__(self, name, password, id=None):
+    def __init__(self, name=None, password=None, id=None):
         self.id = id
         self.name = name
         self.password = password
         self.role = None
+        self._module = self.__class__.__module__
+        self._class = self.__class__.__name__
 
 
     def __str__(self):
@@ -17,13 +21,13 @@ class Users:
 
 
 class Administrator(Users):
-    def __init__(self, name, password, id=None):
+    def __init__(self, name=None, password=None, id=None):
         super().__init__(name, password, id)
         self.role = __class__.__name__
 
 
 class Waiter(Users):
-    def __init__(self, name, password, id=None):
+    def __init__(self, name=None, password=None, id=None):
         super().__init__(name, password, id)
         self.tables = []
         self._invoicement = 0
@@ -31,7 +35,7 @@ class Waiter(Users):
 
 
 class Manager(Users):
-    def __init__(self, name, password, id=None):
+    def __init__(self, name=None, password=None, id=None):
         super().__init__(name, password, id)
         self.role = __class__.__name__
 

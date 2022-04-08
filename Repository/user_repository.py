@@ -1,12 +1,10 @@
 
-from Repository.Repository import Repository
+from Repository.json_repository import JsonRepository
 from exceptions.entity_not_found_exc import EntityNotFoundException
 
 
 
-class UserRepository(Repository):
-    def __init__(self, idGenerator):
-        super().__init__(idGenerator)
+class UserRepository(JsonRepository):
 
     def find_by_key(self, key):
        found = [usr for usr in self.find_all() if usr.password == key]
