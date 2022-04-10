@@ -13,25 +13,24 @@ class TableService:
     def add_product_by_table_id_and_product_name(self, id, name):
         table: Table = self.tables_repo.find_by_id(id)
         product: Product = self.products_repo.find_by_name(name)
-        table.products[product.type][product] = table.products[product.type].get(product, 0) + 1
+        table.products[product] = table.products.get(product, 0) + 1
         return table
 
     def delete_product_by_table_id_and_product_name(self, id , name):
         table: Table = self.tables_repo.find_by_id(id)
         product: Product = self.products_repo.find_by_name(name)
-        if product in table.products[product.type]:
-                if table.products[product.type][product] == 1:
-                    del table.products[product.type][product]
+        if product in table.products:
+                if table.products[product] == 1:
+                    del table.products[product]
                     return table
                 else:
-                    table.products[product.type][product] -= 1
+                    table.products[product] -= 1
                     return table
         raise Exception(f'{product.name} not in table {id}')
 
     def print_products_table_by_id(self, id):
         table: Table = self.tables_repo.find_by_id(id)
-        return f"Waiter {table.waiter.name}, {table.get_formatted()} \n {' ||| '.join([prod.get_formatted() for prod_dict in table.products.values() for prod in prod_dict])}"
-
+        return f"Waiter {table.waiter.name}, {table.get_formatted()} \n {' ||| '.join([prod.get_formatted() for prod in table.products])}"
 
 
 

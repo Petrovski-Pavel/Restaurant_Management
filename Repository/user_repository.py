@@ -10,7 +10,8 @@ class UserRepository(JsonRepository):
        found = [usr for usr in self.find_all() if usr.password == key]
        if found:
            return found[0]
-       raise EntityNotFoundException(f'No user with this key: {key}')
+       return
+       #raise EntityNotFoundException(f'No user with this key: {key}')
 
     def find_by_name(self, name):
         found = [usr for usr in self.find_all() if usr.name == name]

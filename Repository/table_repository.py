@@ -15,7 +15,7 @@ class TableRepository(JsonRepository):
     def create(self, entity):
         if entity._id not in self._entities:
             self._entities[entity._id] = entity
-            entity.waiter.tables.append(entity)
+            entity.waiter.tables.append(entity._id)
             return entity
         raise TableAlreadyOpenedException(f'Table {entity._id} already created.')
 
@@ -29,11 +29,13 @@ class TableRepository(JsonRepository):
 
     def delete_by_id(self, id):
         old = self.find_by_id(id)
-        old.waiter.tables.remove(old)
+        old.waiter.tables.remove(old._id)
         del self._entities[id]
         return old
 
     def add_all(self, entities_iterable):
+        for ent in entities_iterable:
+            print(ent)
         self._entities.update(map(lambda entity: (entity._id, entity), entities_iterable))
 
 
