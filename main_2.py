@@ -98,26 +98,26 @@ if __name__ == '__main__':
     # invoice_service = InvoiceService(tables_repo, invoice_repo)
     # invoice_service.get_invoice(14)
 
-    #print_all(persons_repo)
+    print_all(persons_repo)
 
-    # persons_repo.save()
-    # persons_repo.load()
-    # print('\n', 'After Loading:')
-    # print_all(persons_repo.find_all())
-
+    persons_repo.save()
+    persons_repo.load()
+    print('\n', 'After Loading:')
+    print_all(persons_repo.find_all())
+    #
     products_repo.save()
     products_repo.load()
     print('\n', 'After Loading: prods_repo')
     print_all(products_repo.find_all())
-
     #
-    tables_repo.save()
-    tables_repo.load()
-    print('\n', 'After Loading: tables_repo')
-    print_all(tables_repo.find_all())
-
-
+    print_all(tables_repo)
     #
+    # tables_repo.save()
+    # tables_repo.load()
+    # print('\n', 'After Loading: tables_repo')
+    # print_all(tables_repo.find_all())
+
+
     # invoice_repo.save()
     # invoice_repo.load()
     # print('\n', 'After Loading: inv_repo')

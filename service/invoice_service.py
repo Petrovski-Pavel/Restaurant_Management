@@ -17,16 +17,16 @@ class InvoiceService:
 
     def get_bill(self, tbl_id):
         table = self.tables_repo.find_by_id(tbl_id)
+
         invoice = self.invoice_repo.find_by_table_id(table._id)
+
 
         total = 0
         print("\n-------------------------Bill-------------------------")
-        print(f'{invoice.id}')
-        for prod_type , products in table.products.items():
-            print(f"\n{prod_type}")
-            for product, quantity in products.items():
-                print(f"\n{product.name} x {quantity} -> {quantity*product.price}lv")
-                total+=product.price * quantity
+        #print(f'{invoice.id}')
+        for product, quantity in table.products.items():
+            print(f"\n{product.name} x {quantity} -> {quantity*product.price}lv")
+            total += product.price * quantity
         print(f"\n-------------Total: {total}")
         print(f"Waiter: {table.waiter.name}")
 

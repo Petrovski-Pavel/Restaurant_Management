@@ -29,7 +29,7 @@ class TableRepository(JsonRepository):
 
     def delete_by_id(self, id):
         old = self.find_by_id(id)
-        old.waiter.tables.remove(old._id)
+        old.waiter.tables.remove(id)
         del self._entities[id]
         return old
 

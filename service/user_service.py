@@ -66,7 +66,13 @@ class UserService:
     #                 return waiter,table
     #         raise Exception(f'{product.name} not in table {table._id}')
 
-    def save_staff(self):
-        return self.users_repo.save()
+    def add_staff(self, person):
+        self.users_repo.create(person)
+        self.users_repo.save()
 
+    def load(self):
+        self.users_repo.load()
+
+    def save(self):
+        self.users_repo.save()
 

@@ -1,0 +1,68 @@
+[
+    {
+        "id": 1,
+        "name": "Atanas Koychev",
+        "password": 1206,
+        "tables": [],
+        "invoicement": 0,
+        "_module": "Entities.users",
+        "_class": "Waiter"
+    },
+    {
+        "id": 2,
+        "name": "MAriya",
+        "password": 1207,
+        "tables": [],
+        "invoicement": 0,
+        "_module": "Entities.users",
+        "_class": "Waiter"
+    },
+    {
+        "id": 3,
+        "name": "Zahary Marchev",
+        "password": 1208,
+        "tables": [],
+        "invoicement": 0,
+        "_module": "Entities.users",
+        "_class": "Waiter"
+    },
+    {
+        "id": 4,
+        "name": "Qvor",
+        "password": 1203,
+        "tables": [],
+        "invoicement": 0,
+        "_module": "Entities.users",
+        "_class": "Waiter"
+    },
+    {
+        "id": 5,
+        "name": "Sasho",
+        "password": 1303,
+        "_module": "Entities.users",
+        "_class": "Manager"
+    },
+    {
+        "id": 6,
+        "name": "Kiko",
+        "password": 1202,
+        "tables": [],
+        "invoicement": 0,
+        "_module": "Entities.users",
+        "_class": "Waiter"
+    },
+    {
+        "id": 7,
+        "name": "Zahari",
+        "password": 1401,
+        "_module": "Entities.users",
+        "_class": "Administrator"
+    },
+    {
+        "id": 8,
+        "name": "Mariya",
+        "password": 1400,
+        "_module": "Entities.users",
+        "_class": "Administrator"
+    }
+]

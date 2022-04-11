@@ -1,0 +1,38 @@
+[
+    {
+        "id": 101,
+        "name": "Wine",
+        "price": 10,
+        "quantity": 120,
+        "_module": "Entities.products",
+        "_class": "Beverage",
+        "type": "Beverage"
+    },
+    {
+        "id": 102,
+        "name": "Margaritta",
+        "price": 15,
+        "quantity": 800,
+        "_module": "Entities.products",
+        "_class": "Dish",
+        "type": "Dish"
+    },
+    {
+        "id": 103,
+        "name": "Hawaii",
+        "price": 20,
+        "quantity": 800,
+        "_module": "Entities.products",
+        "_class": "Dish",
+        "type": "Dish"
+    },
+    {
+        "id": 104,
+        "name": "Strawberry Lemonade",
+        "price": 6.5,
+        "quantity": 300,
+        "_module": "Entities.products",
+        "_class": "Beverage",
+        "type": "Beverage"
+    }
+]

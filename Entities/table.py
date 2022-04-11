@@ -25,12 +25,14 @@ class Table:
 
 
     def __str__(self):
-        pr = " | ".join([f'{k}: {", ".join([f"{vv.name}: {v[vv]}"for vv in v])}' for k, v in self.products.items()])
+        #pr = " | ".join([f'{k}: {", ".join([f"{vv.name}: {v[vv]}"for vv in v])}' for k, v in self.products.items()])
+        pr = ' | '.join([f"{prod.name}: {quant}" for prod, quant in self.products.items()])
         return f'{self._id} {pr}'
 
     def get_formatted(self):
         #pr = " | ".join([f'{k}: {", ".join([f"{vv.name}: {v[vv]}" for vv in v])}'for k, v in self.products.items()])
-        return f'| Table number: {self._id} | opened by {self.waiter.name} | with products: {[f"{prod.name}: {quant}" for prod, quant in self.products.items()]}'
+        pr = ' | '.join([f"{prod.name}: {quant}" for prod, quant in self.products.items()])
+        return f'| Table number: {self._id} | opened by {self.waiter.name} | with products: {pr}'
 
     # def add_product(self, product):
     #     pass
