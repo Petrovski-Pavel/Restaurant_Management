@@ -45,7 +45,11 @@ class WaiterView(tk.Toplevel):
                 pass
             else:
                 slave.destroy()
+
         for idx, tb in enumerate(self.user.tables):
             #obj = TableView(self, tb, self.table_controller, self.product_controller, self.invoice_controller)
-            self.table_buttn = ttk.Button(self, text=tb, command=lambda : TableView(self, tb, self.table_controller, self.product_controller, self.invoice_controller))
+            self.table_buttn = ttk.Button(self, text=tb, command=functools.partial(self.create_table_view,tb))
             self.table_buttn.grid(row=0, column=idx)
+
+    def create_table_view(self, table_id):
+        TableView(self, table_id, self.table_controller, self.product_controller, self.invoice_controller)

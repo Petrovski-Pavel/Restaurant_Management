@@ -19,3 +19,7 @@ class ProductsService:
 
     def find_all_prod(self):
         self.products_repository.find_all()
+
+    def add_product(self, product):
+        self.products_repository.create(product)
+        self.products_repository.save()

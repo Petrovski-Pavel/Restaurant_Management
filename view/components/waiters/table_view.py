@@ -14,6 +14,7 @@ class TableView(tk.Toplevel):
         super().__init__(parent)
         self.parent = parent
 
+
         self.invoice_controller = invoice_controller
         self.products_controller = products_controller
         self.table_controller = table_controller
@@ -23,7 +24,7 @@ class TableView(tk.Toplevel):
 
         self.table = self.table_controller.table_service.tables_repo.find_by_id(table_id)
 
-        self.tree = self.create_tree_widget(self.table_id)
+        self.tree = self.create_tree_widget()
 
 
         tk.Button(self, text='Add product',
@@ -31,8 +32,9 @@ class TableView(tk.Toplevel):
                                                self.products_controller)).grid()
         tk.Button(self, text='Get Bill',
                   command=lambda: [self.invoice_controller.get_the_bill(table_id), self.destroy(), self.parent.show_tables()]).grid()
+        tk.Button(self, text= 'Make invoice', command= lambda : [self.invoice_controller._get_the_invoice(table_id), self.destroy(), self.parent.show_tables()]).grid()
 
-    def create_tree_widget(self, table_id):
+    def create_tree_widget(self):
 
         columns = ('name', 'price', 'quantity')
 

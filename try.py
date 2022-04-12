@@ -2,6 +2,7 @@ from tkinter import Tk
 
 from Entities.users import Waiter, Manager, Administrator
 from Repository.id_gen_int import IdGenerator, IdGeneratorProd
+from Repository.id_generator_uuid import IdGeneratorUuid
 from Repository.invoicing_repository import InvoiceRepository
 from Repository.products_repository import ProductsRepository
 from Repository.table_repository import TableRepository
@@ -30,25 +31,25 @@ if __name__ == "__main__":
     root.columnconfigure(0, weight=1)
     root.rowconfigure(0, weight=1)
 
-    # Configure doamin repos and services
+    #Configure doamin repos and services
     # p1 = Waiter('Ivan', 1200)
     # p2 = Manager('Dimitar', 1300)
     # p3 = Administrator('Mariya', 1400)
     # persons = [p1, p2, p3]
 
-    id_gen = IdGenerator()
-    id_gen_prod = IdGeneratorProd()
+    id_gen = IdGeneratorUuid()
+    #id_gen_prod = IdGeneratorProd()
 
     persons_repo = UserRepository(id_gen, 'users_database.json')
     persons_repo.load()
 
-
+    #
     # for p in persons:
     #     persons_repo.create(p)
 
 
     tables_repo = TableRepository()
-    products_repo = ProductsRepository(id_gen_prod, 'products_db.json')
+    products_repo = ProductsRepository(id_gen, 'products_db.json')
 
     invoice_repo = InvoiceRepository()
     invoice_service = InvoiceService(tables_repo, invoice_repo)

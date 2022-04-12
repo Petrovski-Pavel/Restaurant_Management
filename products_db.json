@@ -1,9 +1,9 @@
 [
     {
         "id": 101,
-        "name": "Wine",
-        "price": 10,
-        "quantity": 120,
+        "name": "Beer",
+        "price": 4.9,
+        "quantity": 330.0,
         "_module": "Entities.products",
         "_class": "Beverage",
         "type": "Beverage"

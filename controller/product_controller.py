@@ -19,3 +19,6 @@ class ProductController:
 
     def find_all(self):
         return self.product_service.find_all_prod()
+
+    def add_new_product(self, product):
+        return self.product_service.add_product(product)

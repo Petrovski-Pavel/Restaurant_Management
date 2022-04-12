@@ -1,8 +1,8 @@
 [
     {
         "id": 1,
-        "name": "Atanas Koychev",
-        "password": 1206,
+        "name": "Ivan",
+        "password": 1200,
         "tables": [],
         "invoicement": 0,
         "_module": "Entities.users",
@@ -10,26 +10,22 @@
     },
     {
         "id": 2,
-        "name": "MAriya",
-        "password": 1207,
-        "tables": [],
-        "invoicement": 0,
+        "name": "Dimitar",
+        "password": 1300,
         "_module": "Entities.users",
-        "_class": "Waiter"
+        "_class": "Manager"
     },
     {
         "id": 3,
-        "name": "Zahary Marchev",
-        "password": 1208,
-        "tables": [],
-        "invoicement": 0,
+        "name": "Mariya",
+        "password": 1400,
         "_module": "Entities.users",
-        "_class": "Waiter"
+        "_class": "Administrator"
     },
     {
         "id": 4,
-        "name": "Qvor",
-        "password": 1203,
+        "name": "Georgi",
+        "password": 1201,
         "tables": [],
         "invoicement": 0,
         "_module": "Entities.users",
@@ -37,32 +33,34 @@
     },
     {
         "id": 5,
-        "name": "Sasho",
-        "password": 1303,
+        "name": "Napoleon",
+        "password": 1301,
         "_module": "Entities.users",
         "_class": "Manager"
     },
     {
-        "id": 6,
-        "name": "Kiko",
-        "password": 1202,
+        "id": "fa1ee3a6-ba7a-11ec-92b3-40b0763c0ff6",
+        "name": "georgi2",
+        "password": 1201,
         "tables": [],
         "invoicement": 0,
         "_module": "Entities.users",
         "_class": "Waiter"
     },
     {
-        "id": 7,
-        "name": "Zahari",
-        "password": 1401,
+        "id": "5d5f6fc8-ba7d-11ec-9c8a-40b0763c0ff6",
+        "name": "Ciko",
+        "password": 1302,
         "_module": "Entities.users",
-        "_class": "Administrator"
+        "_class": "Manager"
     },
     {
-        "id": 8,
-        "name": "Mariya",
-        "password": 1400,
+        "id": "7b12db40-ba7d-11ec-bb81-40b0763c0ff6",
+        "name": "kkk",
+        "password": 1203,
+        "tables": [],
+        "invoicement": 0,
         "_module": "Entities.users",
-        "_class": "Administrator"
+        "_class": "Waiter"
     }
 ]

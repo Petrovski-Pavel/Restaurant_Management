@@ -26,7 +26,7 @@ class AdminView(tk.Toplevel):
 
         #self.frame = ttk.Frame(self, padding='30 30 12 12')
 
-        self.list_users = tk.Button(self, text='Show all staff.', command=lambda: UsersStored(self, self.user_controller).create_tree_widget())
+        self.list_users = tk.Button(self, text='Show all staff.', command=lambda: UsersStored(self, self.user_controller))
         self.list_users.grid(row=0, column=0)
         self.list_products = tk.Button(self, text='Show all products', command=lambda : ProductsStored(self,self.product_controller))
         self.list_products.grid(row=0, column=1)

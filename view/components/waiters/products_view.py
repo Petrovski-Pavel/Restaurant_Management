@@ -24,7 +24,7 @@ class ProductsView(tk.Toplevel):
         entry_frame.grid()
         product_name_entry = tk.Entry(self)
         product_name_entry.grid()
-        tk.Button(self, text='Add product', command=lambda : [self.tables_controller.add_product(table_id, product_name_entry.get()), self.parent.create_tree_widget(table_id)]).grid()
+        tk.Button(self, text='Add product', command=lambda : [self.tables_controller.add_product(table_id, product_name_entry.get()), self.parent.create_tree_widget()]).grid()
 
     def create_tree_widget(self):
         self.products_controller.load()

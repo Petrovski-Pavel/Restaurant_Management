@@ -26,6 +26,9 @@ class UserController:
     def save(self):
         return self.user_service.save()
 
+    def find_all(self):
+        return self.user_service.find_all()
+
 
     # def show_add_book(self):
     #     form = ItemForm(self.view,

@@ -3,6 +3,7 @@ import tkinter as tk
 
 from Entities.users import Waiter, Administrator, Manager
 from controller.users_controller import UserController
+from view.components.administrators.item_list import ItemList
 
 
 class UsersStored(tk.Toplevel):
@@ -14,59 +15,55 @@ class UsersStored(tk.Toplevel):
         self.title('All users')
         self.geometry('800x400')
 
-        self.tree = self.create_tree_widget()
+        # self.tree = self.create_tree_widget()
+        self.frame = ttk.Frame(self)
+        self.frame.grid(row=0, column=0, sticky=tk.NSEW)
 
-        self.create_user = tk.Button(self, text='Add staff', command=lambda: Entries(self, self.users_controller))
+        #self.users_controller.load()
+
+        self.tree = ItemList(self.frame, list(self.users_controller.user_service.users_repo.find_all()))
+        self.frame.grid(row=0, column=0, sticky=tk.NSEW)
+
+        self.create_user = tk.Button(self, text='Add staff', command=lambda: Entries(self, self.users_controller, ['Name', 'Role', 'Key']))
         self.create_user.grid(row=1, column=0)
 
-        self.delete_butt = tk.Button(self, text='Delete', command=lambda : self.delete()).grid()
+        self.delete_butt = tk.Button(self, text='Delete', command=self.delete)
+        self.delete_butt.grid()
 
 
-    def create_tree_widget(self):
-        self.users_controller.save()
-        self.users_controller.load()
-
-        columns = ('id', 'name','role', 'key')
-
-        tree = ttk.Treeview(self, columns=columns, show='headings')
-
-        # define headings
-        tree.heading('id', text='ID')
-        tree.heading('name', text='Name')
-        tree.heading('role', text='Role')
-        tree.heading('key', text='Key')
-
-        tree.grid(row=0, column=0, sticky=tk.NSEW)
-
-        # adding an item
-        for person in self.users_controller.user_service.users_repo:
-            tree.insert('', tk.END, values=(person.id, person.name,person.role, person.password))
-
-        return tree
 
     def delete(self):
-        # Get selected item to Delete
-        selected_item = self.tree.selection()
-        print(selected_item)
-        self.tree.delete(selected_item)
+        items = self.tree.get_selected_tems()
+        print(items)
+        # ids = list(map(lambda item: item[0], items))
+        # print(ids)
+
+    def refresh(self):
+        print(self.tree)
+        return self.tree
+
+
+
+
 
 class Entries(tk.Toplevel):
-    def __init__(self, parent, controller):
+    def __init__(self, parent, controller, labels: list):
         super().__init__(parent)
-        self.user_controller = controller
+        self.controller = controller
         self.parent = parent
         self.entries = []
-        self.labels = ['Name','Role', 'Key']
+
+        self.labels = labels
 
 
-        for i in range(3):
+        for i in range(len(labels)):
             my_label = tk.Label(self,text=self.labels[i])
             my_label.grid(row=i, column=0)
             my_entry = tk.Entry(self)
             my_entry.grid(row=i, column=1)
             self.entries.append(my_entry)
 
-        self.create_butt = tk.Button(self, text= 'Create', command = lambda: [self.submit(), self.parent.create_tree_widget()])
+        self.create_butt = tk.Button(self, text= 'Create', command = lambda: [self.submit(), self.parent.refresh()])
         self.create_butt.grid(row=4, column=1)
 
         self.protocol("WM_DELETE_WINDOW", self.dismiss)
@@ -83,17 +80,52 @@ class Entries(tk.Toplevel):
     def submit(self):
         if self.entries[1].get() == 'Waiter':
             wt = Waiter(self.entries[0].get(), int(self.entries[2].get()))
-            self.user_controller.add_new_staff(wt)
+            self.controller.add_new_staff(wt)
             self.destroy()
         elif self.entries[1].get() == 'Administrator':
             wt = Administrator(self.entries[0].get(), int(self.entries[2].get()))
-            self.user_controller.add_new_staff(wt)
+            self.controller.add_new_staff(wt)
             self.destroy()
 
         elif self.entries[1].get() == 'Manager':
             wt = Manager(self.entries[0].get(), int(self.entries[2].get()))
-            self.user_controller.add_new_staff(wt)
+            self.controller.add_new_staff(wt)
             self.destroy()
+        self.parent.refresh()
+        #print(wt)
 
 
 
+    # def create_tree_widget(self):
+    #     self.users_controller.save()
+    #     self.users_controller.load()
+    #     self.frame = ttk.Frame(self)
+    #     self.frame.grid(row=0, column=0,sticky=tk.NSEW)
+    #
+    #     columns = ('id', 'name','role', 'key')
+    #
+    #     tree = ttk.Treeview(self.frame, columns=columns, show='headings',selectmode='extended')
+    #
+    #     # define headings
+    #     tree.heading('id', text='ID')
+    #     tree.heading('name', text='Name')
+    #     tree.heading('role', text='Role')
+    #     tree.heading('key', text='Key')
+    #
+    #     tree.grid(row=0, column=0, sticky=tk.NSEW)
+    #
+    #     # adding an item
+    #     for person in self.users_controller.user_service.users_repo.find_all():
+    #         tree.insert('', tk.END, values=(person.id, person.name, person.role, person.password))
+    #
+    #     return tree
+    # #
+    # def get_selected_tems(self):
+    #     items = []
+    #     print(self.tree.selection())
+    #     for sel_item in self.tree.selection():
+    #         items.append(self.tree.item(sel_item, 'values'))
+    #     print(items)
+    #     print(self.tree.selection())
+    #     return items
+    #

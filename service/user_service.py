@@ -69,6 +69,10 @@ class UserService:
     def add_staff(self, person):
         self.users_repo.create(person)
         self.users_repo.save()
+        #self.users_repo.load()
+
+    def find_all(self):
+        self.users_repo.find_all()
 
     def load(self):
         self.users_repo.load()
