@@ -27,20 +27,33 @@ class UsersStored(tk.Toplevel):
         self.create_user = tk.Button(self, text='Add staff', command=lambda: Entries(self, self.users_controller, ['Name', 'Role', 'Key']))
         self.create_user.grid(row=1, column=0)
 
-        self.delete_butt = tk.Button(self, text='Delete', command=self.delete)
+        self.delete_butt = tk.Button(self, text='Delete', command= lambda : self.delete())
         self.delete_butt.grid()
 
 
 
     def delete(self):
+        self.users_controller.save()
+        self.users_controller.load()
+        items = None
         items = self.tree.get_selected_tems()
         print(items)
-        # ids = list(map(lambda item: item[0], items))
-        # print(ids)
+        for item in items:
+            idx = item[0]
+            if type(idx) == int:
+                idx = int(idx)
+            #print(idx)
+            #print(self.users_controller.user_service.users_repo.find_by_id(idx))
+            print(self.users_controller.find_by_id(idx))
+            print()
+            self.users_controller.delete_staff_id(idx)
+
+        return self.refresh()
+
 
     def refresh(self):
-        print(self.tree)
-        return self.tree
+        self.users_controller.load()
+        return ItemList(self.frame, list(self.users_controller.user_service.users_repo.find_all()))
 
 
 
@@ -66,6 +79,7 @@ class Entries(tk.Toplevel):
         self.create_butt = tk.Button(self, text= 'Create', command = lambda: [self.submit(), self.parent.refresh()])
         self.create_butt.grid(row=4, column=1)
 
+        #Modeled
         self.protocol("WM_DELETE_WINDOW", self.dismiss)
         self.transient(self.parent)
         self.wait_visibility()
@@ -91,8 +105,8 @@ class Entries(tk.Toplevel):
             wt = Manager(self.entries[0].get(), int(self.entries[2].get()))
             self.controller.add_new_staff(wt)
             self.destroy()
-        self.parent.refresh()
-        #print(wt)
+        # self.parent.refresh()
+
 
 
 

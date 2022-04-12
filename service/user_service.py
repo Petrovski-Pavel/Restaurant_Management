@@ -48,31 +48,28 @@ class UserService:
             waiter.tables.remove(table)
             return waiter
 
-    def list_all_tables(self, key):
-        user = self.users_repo.find_by_key(key)
-        for table in user.tables:
-            yield table._id
+    def delete_staff_by_id(self, id):
+        self.users_repo.delete_by_id(id)
+        self.users_repo.save()
 
-    # def delete_product_from_table(self, key, id, product: Product):
-    #     waiter = self.users_repo.find_by_key(key)
-    #     table = self.tables_repo.find_by_id(id)
-    #     if self.check_if_waiter_has_table(waiter, table):
-    #         if product in table.products[product.type]:
-    #             if table.products[product.type][product] == 1:
-    #                 del table.products[product.type][product]
-    #                 return waiter, table
-    #             else:
-    #                 table.products[product.type][product] -= 1
-    #                 return waiter,table
-    #         raise Exception(f'{product.name} not in table {table._id}')
+    def delete_staff_by_key(self, key):
+        self.users_repo.delete_by_key(key)
+        self.users_repo.save()
+
 
     def add_staff(self, person):
         self.users_repo.create(person)
         self.users_repo.save()
-        #self.users_repo.load()
+        self.users_repo.load()
 
     def find_all(self):
-        self.users_repo.find_all()
+        return self.users_repo.find_all()
+
+    def find_by_key(self, key):
+        return self.users_repo.find_by_key(key)
+
+    def find_by_id(self, id):
+        return self.users_repo.find_by_id(id)
 
     def load(self):
         self.users_repo.load()

@@ -1,7 +1,7 @@
 from tkinter import ttk
 import tkinter as tk
 
-from Entities.products import Beverage
+from Entities.products import Beverage, Dish
 from controller.product_controller import ProductController
 from view.components.administrators.users_stored import Entries
 
@@ -42,6 +42,9 @@ class ProductsStored(tk.Toplevel):
 
         return tree
 
+    def refresh(self):
+        pass
+
 class ProdEntries(Entries):
     def __init__(self, parent, controller, labels: list):
         super().__init__(parent, controller, labels)
@@ -52,7 +55,8 @@ class ProdEntries(Entries):
             self.controller.add_new_product(pr)
 
         elif self.entries[-1].get() == 'Dish':
-            pr = Beverage()
+            pr = Dish(self.entries[0].get(), float(self.entries[1].get()), float(self.entries[2].get()))
             self.controller.add_new_product(pr)
         print(pr)
         self.destroy()
+

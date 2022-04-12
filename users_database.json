@@ -30,37 +30,5 @@
         "invoicement": 0,
         "_module": "Entities.users",
         "_class": "Waiter"
-    },
-    {
-        "id": 5,
-        "name": "Napoleon",
-        "password": 1301,
-        "_module": "Entities.users",
-        "_class": "Manager"
-    },
-    {
-        "id": "fa1ee3a6-ba7a-11ec-92b3-40b0763c0ff6",
-        "name": "georgi2",
-        "password": 1201,
-        "tables": [],
-        "invoicement": 0,
-        "_module": "Entities.users",
-        "_class": "Waiter"
-    },
-    {
-        "id": "5d5f6fc8-ba7d-11ec-9c8a-40b0763c0ff6",
-        "name": "Ciko",
-        "password": 1302,
-        "_module": "Entities.users",
-        "_class": "Manager"
-    },
-    {
-        "id": "7b12db40-ba7d-11ec-bb81-40b0763c0ff6",
-        "name": "kkk",
-        "password": 1203,
-        "tables": [],
-        "invoicement": 0,
-        "_module": "Entities.users",
-        "_class": "Waiter"
     }
 ]
