@@ -4,9 +4,10 @@ class Product:
         self.name = name
         self.price = price
         self.quantity = quantity
+        self.type = __class__.__name__
         self._module = self.__class__.__module__
         self._class = self.__class__.__name__
-        self.type = __class__.__name__
+
 
     # @classmethod
     # def from_json(cls, prop_dict):

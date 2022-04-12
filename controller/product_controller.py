@@ -14,8 +14,17 @@ class ProductController:
     def find_by_name(self, name):
         return self.product_service.find_by_name(name)
 
+    def find_by_id(self, id):
+        return self.product_service.find_by_id(id)
+
+    def find_all(self):
+        return self.product_service.find_all_prod()
+
     def delete_by_name(self, name):
         return self.product_service.delete_by_name(name)
+
+    def delete_by_id(self, id):
+        return self.product_service.delete_by_id(id)
 
     def find_all(self):
         return self.product_service.find_all_prod()

@@ -17,7 +17,7 @@ class UserController:
     def add_new_staff(self, person):
         return self.user_service.add_staff(person)
 
-    def delete_staff_id(self, id):
+    def delete_by_id(self, id):
         return self.user_service.delete_staff_by_id(id)
 
     def delete_staff_by_key(self, key):

@@ -36,15 +36,6 @@
         "type": "Beverage"
     },
     {
-        "id": "3696db88-ba7f-11ec-8073-40b0763c0ff6",
-        "name": null,
-        "price": null,
-        "quantity": null,
-        "_module": "Entities.products",
-        "_class": "Beverage",
-        "type": "Beverage"
-    },
-    {
         "id": "823551a4-ba7f-11ec-8c56-40b0763c0ff6",
         "name": "PIzza",
         "price": 4.9,
@@ -54,18 +45,9 @@
         "type": "Beverage"
     },
     {
-        "id": "b7f63e38-ba7f-11ec-ae55-40b0763c0ff6",
-        "name": null,
-        "price": null,
-        "quantity": null,
-        "_module": "Entities.products",
-        "_class": "Beverage",
-        "type": "Beverage"
-    },
-    {
-        "id": "fb0aedca-ba7f-11ec-bdb3-40b0763c0ff6",
-        "name": "Caramel",
-        "price": 4.9,
+        "id": "b4029926-baaa-11ec-bd77-40b0763c0ff6",
+        "name": "Cake",
+        "price": 4.5,
         "quantity": 250.0,
         "_module": "Entities.products",
         "_class": "Dish",

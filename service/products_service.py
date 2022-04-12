@@ -12,14 +12,22 @@ class ProductsService:
         return self.products_repository.load()
 
     def find_by_name(self, name):
-        self.products_repository.find_by_name(name)
+        return self.products_repository.find_by_name(name)
 
     def delete_by_name(self, name):
-        self.products_repository.delete_by_name(name)
+        return self.products_repository.delete_by_name(name)
 
     def find_all_prod(self):
-        self.products_repository.find_all()
+        return self.products_repository.find_all()
+
+    def find_by_id(self, id):
+        return self.products_repository.find_by_id(id)
 
     def add_product(self, product):
         self.products_repository.create(product)
+        self.products_repository.save()
+        self.products_repository.load()
+
+    def delete_by_id(self, id):
+        self.products_repository.delete_by_id(id)
         self.products_repository.save()

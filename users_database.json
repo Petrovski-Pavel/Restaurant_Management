@@ -30,5 +30,14 @@
         "invoicement": 0,
         "_module": "Entities.users",
         "_class": "Waiter"
+    },
+    {
+        "id": "f9619010-baa4-11ec-8c3e-40b0763c0ff6",
+        "name": "Kiril",
+        "password": 1202,
+        "tables": [],
+        "invoicement": 0,
+        "_module": "Entities.users",
+        "_class": "Waiter"
     }
 ]
