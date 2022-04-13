@@ -16,6 +16,7 @@ class WaiterView(tk.Toplevel):
     def __init__(self, parent, user_controller: UserController, table_controller: TableController,
                  products_controller: ProductController, invoice_controller, user):
         super().__init__(parent)
+        self.parent = parent
         self.geometry('375x150')
         self.title(f'Waiter {user.name}')
 
@@ -46,7 +47,16 @@ class WaiterView(tk.Toplevel):
 
         self.open_table_button.grid(row=2, column=0)
 
-        # self.root.mainloop()
+        # Modal dialog
+        self.protocol("WM_DELETE_WINDOW", self.dismiss)
+        self.transient(self.parent)
+        self.wait_visibility()
+        self.grab_set()
+        self.wait_window()
+
+    def dismiss(self):
+        self.grab_release()
+        self.destroy()
 
     def show_tables(self):
 
@@ -64,6 +74,7 @@ class WaiterView(tk.Toplevel):
             self.table_buttn = ttk.Button(self, text=tb, command=functools.partial(self.create_table_view,tb))
             self.table_buttn.grid(row=row, column=column)
             column += 1
+
 
     def create_table_view(self, table_id):
         TableView(self, table_id, self.table_controller, self.product_controller, self.invoice_controller, self.user)

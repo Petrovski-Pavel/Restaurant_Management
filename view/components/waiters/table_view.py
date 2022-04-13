@@ -31,8 +31,9 @@ class TableView(tk.Toplevel):
 
         # Create TreeView
 
-        self.tree = ItemList(self.frame, list(self.table.products), ('id','name', 'price', 'qunatity', 'type', 'ordered_quantity'))
+        self.tree = ItemList(self.frame, list(self.table.products), ('id','name', 'price', 'qunatity', 'type'))
         self.frame.grid(row=0, column=0, sticky=tk.NSEW)
+
 
 
         tk.Button(self, text='Add product',
@@ -47,7 +48,16 @@ class TableView(tk.Toplevel):
         if self.user.role == 'Manager':
             tk.Button(self, text= 'Delete product', command = lambda : self.del_prod_from_table()).grid()
 
+            # Modal dialog
+        self.protocol("WM_DELETE_WINDOW", self.dismiss)
+        self.transient(self.parent)
+        self.wait_visibility()
+        self.grab_set()
+        self.wait_window()
 
+    def dismiss(self):
+        self.grab_release()
+        self.destroy()
 
     def del_prod_from_table(self):
         self.products_controller.save()

@@ -52,5 +52,14 @@
         "type": "Beverage",
         "_module": "Entities.products",
         "_class": "Beverage"
+    },
+    {
+        "id": "b1b3c390-bb82-11ec-aeb0-40b0763c0ff6",
+        "name": "Coke",
+        "price": 120.0,
+        "quantity": 1.0,
+        "type": "Dish",
+        "_module": "Entities.products",
+        "_class": "Dish"
     }
 ]

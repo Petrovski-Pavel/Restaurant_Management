@@ -15,6 +15,7 @@ class ManagerView(tk.Toplevel):
                  products_controller: ProductController, invoice_controller, user):
         super().__init__(parent)
 
+        self.parent = parent
         self.user = user
         self.invoice_controller = invoice_controller
         self.products_controller = products_controller
@@ -28,29 +29,39 @@ class ManagerView(tk.Toplevel):
         self.products_controller.load()
 
         #Configure widget
-        self.geometry('500x150')
+        self.geometry('400x150')
         self.title(f'Manager {user.name}')
 
 
         # Adding buttons and labels
-        key_label = tk.Label(self, text= "Enter waiter's key").grid(row = 0, column = 0, sticky=tk.NE)
-        table_id_label = tk.Label(self, text= "Enter table number").grid(row = 1, column = 0, sticky=tk.NE)
+        key_label = tk.Label(self, text= "Enter waiter's key").grid(row = 0, column = 1, sticky=tk.NE)
+        table_id_label = tk.Label(self, text= "Enter table number").grid(row = 1, column = 1, sticky=tk.NE)
         self.key_entry = tk.Entry(self)
-        self.key_entry.grid(row=0, column=1)
+        self.key_entry.grid(row=0, column=2)
         self.table_id_entry = tk.Entry(self)
-        self.table_id_entry.grid(row=1, column=1)
+        self.table_id_entry.grid(row=1, column=2)
 
 
-        self.show_all_tables_button = tk.Button(self, text='Show all tables', command = lambda : AllTablesView(self, self.table_controller, self.user_controller,self.products_controller, self.invoice_controller))
-        self.show_all_tables_button.grid(row=2, column= 0, sticky=tk.E)
+        self.show_all_tables_button = tk.Button(self, text='Show all tables',bg='white', command = lambda : AllTablesView(self, self.table_controller, self.user_controller,self.products_controller, self.invoice_controller))
+        self.show_all_tables_button.grid(row=2, column= 1, sticky=tk.E)
 
-        self.get_waiter_invoice_button = tk.Button(self, text='Get waiter finances', command = lambda : [print(self.user_controller.get_waiter_invoice(self.get_entry(self.key_entry)))])
-        self.get_waiter_invoice_button.grid(row=2, column= 1, sticky=tk.E)
-
-        self.get_waiter_invoice_button = tk.Button(self, text='Get total finances', command = lambda : print(self.invoice_controller.get_financial_statement()))
+        self.get_waiter_invoice_button = tk.Button(self, text='Get waiter finances',bg='white', command = lambda : [print(self.user_controller.get_waiter_invoice(self.get_entry(self.key_entry)))])
         self.get_waiter_invoice_button.grid(row=2, column= 2, sticky=tk.E)
 
-        self.delete_table_button = tk.Button(self, text = 'Delete table', command = lambda: self.table_controller.delete_table(self.get_entry(self.table_id_entry))).grid()
+        self.get_waiter_invoice_button = tk.Button(self, text='Get total finances',bg='white', command = lambda : print(self.invoice_controller.get_financial_statement()))
+        self.get_waiter_invoice_button.grid(row=3, column= 1, sticky=tk.E)
+
+        self.delete_table_button = tk.Button(self, text = 'Delete table',bg='white', command = lambda: self.table_controller.delete_table(self.get_entry(self.table_id_entry))).grid(row=3, column=2, sticky=tk.E)
+        # Modal dialog
+        self.protocol("WM_DELETE_WINDOW", self.dismiss)
+        self.transient(self.parent)
+        self.wait_visibility()
+        self.grab_set()
+        self.wait_window()
+
+    def dismiss(self):
+        self.grab_release()
+        self.destroy()
 
         # for table in self.table_controller.find_all():
         #     print(table)

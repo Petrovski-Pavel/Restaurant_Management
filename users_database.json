@@ -4,7 +4,7 @@
         "name": "Ivan",
         "password": 1200,
         "tables": [],
-        "invoicement": 0,
+        "invoicement": 360.0,
         "_module": "Entities.users",
         "_class": "Waiter"
     },

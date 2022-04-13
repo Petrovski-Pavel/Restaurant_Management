@@ -27,7 +27,7 @@ class Entries(tk.Toplevel):
         self.create_butt = tk.Button(self, text= 'Create', command = lambda: [self.submit(), self.parent.refresh()])
         self.create_butt.grid(row=4, column=1)
 
-        #Modeled
+        #Modal dialog
         self.protocol("WM_DELETE_WINDOW", self.dismiss)
         self.transient(self.parent)
         self.wait_visibility()

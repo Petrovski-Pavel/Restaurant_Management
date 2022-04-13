@@ -37,6 +37,18 @@ class AdminView(tk.Toplevel):
         #self.list_products.grid(row=1, column=2, sticky=tk.SW)
         self.list_products.pack(anchor='center')
 
+        # Modal dialog
+        self.protocol("WM_DELETE_WINDOW", self.dismiss)
+        self.transient(self.parent)
+        self.wait_visibility()
+        self.grab_set()
+        self.wait_window()
+
+    def dismiss(self):
+        self.grab_release()
+        self.destroy()
+
+
 
 
 

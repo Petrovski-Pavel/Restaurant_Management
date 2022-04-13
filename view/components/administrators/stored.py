@@ -29,7 +29,16 @@ class Stored(tk.Toplevel):
         self.delete_butt = tk.Button(self, text='Delete',width=8,height=3,bg='red', command=lambda: self.delete())
         self.delete_butt.grid(pady=15, padx=3)
 
+        # Modal dialog
+        self.protocol("WM_DELETE_WINDOW", self.dismiss)
+        self.transient(self.parent)
+        self.wait_visibility()
+        self.grab_set()
+        self.wait_window()
 
+    def dismiss(self):
+        self.grab_release()
+        self.destroy()
 
     def delete(self):
         self.controller.save()

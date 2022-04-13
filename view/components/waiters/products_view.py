@@ -22,7 +22,7 @@ class ProductsView(tk.Toplevel):
         self.products_controller.load()
 
         self.title('All products')
-        self.geometry('800x450')
+        self.geometry('900x400')
 
         self.frame = ttk.Frame(self)
         self.frame.grid(row=0, column=0, sticky=tk.NSEW)
@@ -35,11 +35,21 @@ class ProductsView(tk.Toplevel):
         entry_frame = tk.Frame()
         entry_frame.grid()
         product_name_entry = tk.Entry(self)
-        product_name_entry.grid()
+        product_name_entry.grid(row=1, column=1)
 
+    #     # Modal dialog
+    #     self.protocol("WM_DELETE_WINDOW", self.dismiss)
+    #     self.transient(self.parent)
+    #     self.wait_visibility()
+    #     self.grab_set()
+    #     self.wait_window()
+    #
+    # def dismiss(self):
+    #     self.grab_release()
+    #     self.destroy()
 
-        tk.Button(self, text='Add', command = self.add_prod).grid()
-        tk.Button(self, text='Add product by name', command=lambda : [self.tables_controller.add_product_by_name(table_id, product_name_entry.get()), self.refresh()]).grid()
+        tk.Button(self, text='Add',width=10, command = self.add_prod).grid(row=1,column=0)
+        tk.Button(self, text='Add product by name', command=lambda : [self.tables_controller.add_product_by_name(table_id, product_name_entry.get()), self.refresh()]).grid(row=2, column=1)
 
     def add_prod(self):
         self.products_controller.save()

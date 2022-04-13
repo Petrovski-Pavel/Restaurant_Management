@@ -45,6 +45,8 @@ class MainView(ttk.Frame):
         waiter.grid(row=2, column=2)
 
 
+
+
     def check_login(self, username, key, role):
         try:
             key = int(key)
