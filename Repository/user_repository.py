@@ -21,7 +21,6 @@ class UserRepository(JsonRepository):
         return entity
 
     def find_by_key(self, key):
-
         found = [usr for usr in self.find_all() if usr.password == key]
         if found:
             return found[0]
@@ -46,4 +45,11 @@ class UserRepository(JsonRepository):
         ide = old.id
         del self._entities[ide]
         return old
+
+    def get_waiter_financial_statement(self, key):
+        waiter = self.find_by_key(key)
+        fin = waiter._invoicement
+        waiter._invoicement = 0
+        return fin
+
 

@@ -22,6 +22,9 @@ class InvoiceRepository(JsonRepository):
     def find_by_table_id(self, tbl_id):
         return find_first(lambda inv: inv.table._id == tbl_id, self.find_all())
 
+    def get_financial_statement(self):
+        return self.income
+
 
 
 

@@ -18,7 +18,7 @@ class Bill(Invoicing):
     def __init__(self, number=None, table: Table=None):
         super().__init__(number, table)
 
-class Invoice(Invoicing):
+class Invoicee(Invoicing):
     def __init__(self, number=None, table: Table=None, company_name=None, customer_name=None, bank_account_number=None):
         super().__init__(number, table)
         self.company_name = company_name

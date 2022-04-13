@@ -6,19 +6,26 @@ DEFAULT_COLUMN_WIDTH_PX = 140
 
 
 class ItemList(ttk.Frame):
-    def __init__(self, parent, items):
+    def __init__(self, parent, items, col_labels = None):
         super().__init__(parent, padding="3 3 12 12")
+        self.col_labels = col_labels
         self.parent = parent
 
         self.items = items
         self.item_pos_ids = None
         self.grid(row=0, column=0, sticky='nsew')
 
-        columns = tuple([k for k in (self.items)[0].__dict__.keys() if k != '_module' and k != '_class'])
+        #print(self.items)
+
+
+        if col_labels is not None:
+            columns = self.col_labels
+        else:
+            columns = tuple([k for k in (self.items)[0].__dict__.keys() if k != '_module' and k != '_class'])
         self.tree = ttk.Treeview(self, columns=columns,
                                  selectmode='extended', show='headings')
         for column in columns:
-            if column != '_module' and column != '_class':
+            if column == '_module' and column == '_class':
                 continue
             else:
                 self.tree.heading(column, text=column.title())
@@ -43,24 +50,19 @@ class ItemList(ttk.Frame):
     def set_items(self, items):
         def set_item(item):
             values = [v for k, v in item.__dict__.items() if k != '_module' and k != '_class']
-            # for k, v in item.__dict__.items():
-            #     if k == '_module' or k == '_class':
-            #         continue
-            #
-            #     else:
-            #         values.append(v)
-
             for i, val in enumerate(values):
                 if isinstance(val, (list, tuple)):
                     values[i] = ', '.join(val)
             return self.tree.insert('', END, values=tuple(values))
 
-        if self.item_pos_ids is not None:
-            self.tree.delete(*self.item_pos_ids)
-        self.items = items
-        self.item_pos_ids = list(map(set_item, self.items))
-        self.update_idletasks()
-        self.tree.see(self.item_pos_ids[-1])
+
+        if self.items:
+            if self.item_pos_ids is not None:
+                self.tree.delete(*self.item_pos_ids)
+            self.items = items
+            self.item_pos_ids = list(map(set_item, self.items))
+            self.update_idletasks()
+            self.tree.see(self.item_pos_ids[-1])
 
     def get_selected_tems(self):
         items = []

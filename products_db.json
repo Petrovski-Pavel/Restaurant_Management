@@ -36,15 +36,6 @@
         "type": "Beverage"
     },
     {
-        "id": "823551a4-ba7f-11ec-8c56-40b0763c0ff6",
-        "name": "PIzza",
-        "price": 4.9,
-        "quantity": 330.0,
-        "_module": "Entities.products",
-        "_class": "Beverage",
-        "type": "Beverage"
-    },
-    {
         "id": "b4029926-baaa-11ec-bd77-40b0763c0ff6",
         "name": "Cake",
         "price": 4.5,
@@ -52,5 +43,14 @@
         "_module": "Entities.products",
         "_class": "Dish",
         "type": "Dish"
+    },
+    {
+        "id": "84b98c8c-bb04-11ec-a4cc-40b0763c0ff6",
+        "name": "Mojito",
+        "price": 4.9,
+        "quantity": 330.0,
+        "type": "Beverage",
+        "_module": "Entities.products",
+        "_class": "Beverage"
     }
 ]

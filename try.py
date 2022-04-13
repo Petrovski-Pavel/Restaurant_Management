@@ -1,4 +1,9 @@
-from tkinter import Tk
+import tkinter as tk
+#from tkinter import Tk
+
+from tkinter import PhotoImage
+from PIL import ImageTk, Image
+
 
 from Entities.users import Waiter, Manager, Administrator
 from Repository.id_gen_int import IdGenerator, IdGeneratorProd
@@ -16,7 +21,6 @@ from service.products_service import ProductsService
 from service.table_service import TableService
 from service.user_service import UserService
 from util.tk_utils import center_resize_window
-#from view.commands.login_command import LoginCommand
 
 from view.components.main_view import MainView
 
@@ -26,10 +30,24 @@ class TablesRepository:
 
 
 if __name__ == "__main__":
-    root = Tk()
+    root = tk.Tk()
     center_resize_window(root, 300, 300)
     root.columnconfigure(0, weight=1)
     root.rowconfigure(0, weight=1)
+
+    image1 = Image.open("pizza_label.png")
+    image1 = image1.resize((150, 150))
+    test = ImageTk.PhotoImage(image1)
+
+    image1 = Image.open("pizza_label_2.png")
+    image1 = image1.resize((150, 150))
+    test = ImageTk.PhotoImage(image1)
+
+    label1 = tk.Label(image=test)
+    label1.image = test
+
+    # Position image
+    label1.place(relx=0.5, rely=0.5, anchor='center')
 
     #Configure doamin repos and services
     # p1 = Waiter('Ivan', 1200)
@@ -50,9 +68,10 @@ if __name__ == "__main__":
 
     tables_repo = TableRepository()
     products_repo = ProductsRepository(id_gen, 'products_db.json')
+    products_repo.load()
 
     invoice_repo = InvoiceRepository()
-    invoice_service = InvoiceService(tables_repo, invoice_repo)
+    invoice_service = InvoiceService(tables_repo, invoice_repo, persons_repo)
     invoice_controller = InvoiceController(invoice_service)
 
 

@@ -1,5 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
+
+
 
 from controller.invoice_controller import InvoiceController
 from controller.product_controller import ProductController
@@ -7,6 +10,7 @@ from controller.table_controller import TableController
 from controller.users_controller import UserController
 #from view.commands.login_command import LoginCommand
 from view.components.administrators.admin_view import AdminView
+from view.components.managers.manager_view import ManagerView
 from view.components.waiters.waiter_view import WaiterView
 
 class MainView(ttk.Frame):
@@ -17,7 +21,9 @@ class MainView(ttk.Frame):
         self.user_controller = user_controller
         self.table_controller = table_controller
         self.parent = parent
-        #
+
+        img= self.parent.iconbitmap('pizza_icon.ico')
+
 
         self.parent.title('Restaurant Managment')
         self.grid(column=0, row=0, sticky=tk.NSEW)
@@ -40,7 +46,10 @@ class MainView(ttk.Frame):
 
 
     def check_login(self, username, key, role):
-        key = int(key)
+        try:
+            key = int(key)
+        except ValueError:
+            messagebox.showerror(message='Key must be digits')
         user = self.user_controller.user_service.users_repo.find_by_key(key)
         if user is not None and user.name == username and user.role == role:
             self.logged = True
@@ -48,7 +57,9 @@ class MainView(ttk.Frame):
                 return AdminView(self, self.user_controller, self.product_controller, user)
             elif user.role == 'Waiter':
                 return WaiterView(self, self.user_controller, self.table_controller, self.product_controller, self.invoice_controller, user)
-        raise Exception('Wrong user credentials')
+            elif user.role == 'Manager':
+                return ManagerView(self, self.user_controller, self.table_controller, self.product_controller, self.invoice_controller, user)
+        messagebox.showerror(message='Wrong user credentials')
 
 
 

@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "id": "1",
         "name": "Ivan",
         "password": 1200,
         "tables": [],
@@ -9,21 +9,21 @@
         "_class": "Waiter"
     },
     {
-        "id": 2,
+        "id": "2",
         "name": "Dimitar",
         "password": 1300,
         "_module": "Entities.users",
         "_class": "Manager"
     },
     {
-        "id": 3,
+        "id": "3",
         "name": "Mariya",
         "password": 1400,
         "_module": "Entities.users",
         "_class": "Administrator"
     },
     {
-        "id": 4,
+        "id": "4",
         "name": "Georgi",
         "password": 1201,
         "tables": [],
@@ -32,9 +32,27 @@
         "_class": "Waiter"
     },
     {
-        "id": "f9619010-baa4-11ec-8c3e-40b0763c0ff6",
-        "name": "Kiril",
+        "id": "f1d9e698-bb04-11ec-925d-40b0763c0ff6",
+        "name": "Stoyan",
         "password": 1202,
+        "tables": [],
+        "invoicement": 0,
+        "_module": "Entities.users",
+        "_class": "Waiter"
+    },
+    {
+        "id": "d35415e2-bb08-11ec-9cc9-40b0763c0ff6",
+        "name": "Dimitar Georgiev",
+        "password": 1203,
+        "tables": [],
+        "invoicement": 0,
+        "_module": "Entities.users",
+        "_class": "Waiter"
+    },
+    {
+        "id": "4a19c09a-bb6b-11ec-bbdb-40b0763c0ff6",
+        "name": "Kiril",
+        "password": 1204,
         "tables": [],
         "invoicement": 0,
         "_module": "Entities.users",

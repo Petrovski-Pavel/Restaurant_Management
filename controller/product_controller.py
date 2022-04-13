@@ -26,8 +26,6 @@ class ProductController:
     def delete_by_id(self, id):
         return self.product_service.delete_by_id(id)
 
-    def find_all(self):
-        return self.product_service.find_all_prod()
 
     def add_new_product(self, product):
         return self.product_service.add_product(product)

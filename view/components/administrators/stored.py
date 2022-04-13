@@ -1,10 +1,8 @@
 from tkinter import ttk
 import tkinter as tk
 
-from Entities.users import Waiter, Administrator, Manager
-from controller.users_controller import UserController
 from view.components.administrators.entries import Entries
-from view.components.administrators.item_list import ItemList
+from view.components.item_list import ItemList
 
 
 class Stored(tk.Toplevel):
@@ -25,11 +23,11 @@ class Stored(tk.Toplevel):
         self.frame.grid(row=0, column=0, sticky=tk.NSEW)
 
         # Buttons
-        self.create_user = tk.Button(self, text='Add staff', command=lambda: Entries(self, self.controller, self.entry_labels))
-        self.create_user.grid(row=1, column=0)
+        self.create_user = tk.Button(self, text='Add',width=8,height=3,bg='green', command=lambda: Entries(self, self.controller, self.entry_labels))
+        self.create_user.grid(pady=10, padx=2)
 
-        self.delete_butt = tk.Button(self, text='Delete', command=lambda: self.delete())
-        self.delete_butt.grid()
+        self.delete_butt = tk.Button(self, text='Delete',width=8,height=3,bg='red', command=lambda: self.delete())
+        self.delete_butt.grid(pady=15, padx=3)
 
 
 

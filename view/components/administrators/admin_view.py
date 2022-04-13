@@ -5,9 +5,7 @@ from Entities.users import Administrator, Waiter, Manager
 from controller.product_controller import ProductController
 from controller.users_controller import UserController
 from util.tk_utils import center_resize_window
-from view.components.administrators.products_stored import ProductsStored
 from view.components.administrators.stored import Stored
-from view.components.administrators.users_stored import UsersStored
 
 
 class AdminView(tk.Toplevel):
@@ -31,13 +29,13 @@ class AdminView(tk.Toplevel):
         self.user_controller.load()
         self.product_controller.load()
 
-        #self.frame = ttk.Frame(self, padding='30 30 12 12')
 
-        self.list_users = tk.Button(self, text='Show all staff.', command=lambda: Stored(self, self.user_controller, ['Name', 'Role', 'Key']))
-        self.list_users.grid(row=0, column=0)
-        self.list_products = tk.Button(self, text='Show all products', command=lambda : Stored(self,self.product_controller, ['Name', 'Price', 'Quantity', 'Type']))
-        self.list_products.grid(row=0, column=1)
-
+        self.list_users = tk.Button(self, text='Show all staff.',width=10, height=2 ,bg='white',command=lambda: Stored(self, self.user_controller, ['Name', 'Role', 'Key']))
+        #self.list_users.grid(row=1, column=0, sticky=tk.SE)
+        self.list_users.pack(anchor='center')
+        self.list_products = tk.Button(self, text='Show all products',width=15, height=2,bg='white', command=lambda : Stored(self,self.product_controller, ['Name', 'Price', 'Quantity', 'Type']))
+        #self.list_products.grid(row=1, column=2, sticky=tk.SW)
+        self.list_products.pack(anchor='center')
 
 
 

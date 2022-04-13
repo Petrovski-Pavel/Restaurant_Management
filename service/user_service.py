@@ -13,18 +13,23 @@ class UserService:
 
 
     def check_if_waiter_has_table(self, waiter, table):
-        if table in waiter.tables:
+        # print(table._id)
+        # print(waiter.tables)
+        if table._id in waiter.tables:
+            print(True)
             return True
-        return False
-        #raise CannotFindTableException(f'User {waiter.name} doesn have table with number {table._id}.')
+        raise CannotFindTableException(f'User {waiter.name} doesn have table with number {table._id}.')
 
     def waiter_open_table_by_waiter_key_table_id(self,key, table_id):
         waiter = self.users_repo.find_by_key(key)
+        # if not self.check_if_waiter_has_table(waiter, table):
+        if waiter.role == 'Administrator':
+            raise UserCannotOpenTable(f'User {waiter.name} is {waiter.role} and cannot open tables!')
         table = self.tables_repo.create(Table(table_id, waiter))
-        if not self.check_if_waiter_has_table(waiter, table):
-            if waiter.role == 'Administrator':
-                raise UserCannotOpenTable(f'User {waiter.name} is {waiter.role} and cannot open tables!')
-            return waiter, table
+        waiter.tables.append(table_id)
+        # print(waiter.tables)
+        #self.users_repo.save()
+        return waiter, table
 
     # def waiter_add_product_by_waiter_key_and_table_id(self,key, tbl_id, product: Product):
     #     table: Table = self.tables_repo.find_by_id(tbl_id)
@@ -45,7 +50,9 @@ class UserService:
         table = self.tables_repo.find_by_id(id)
         if self.check_if_waiter_has_table(waiter,table):
             self.tables_repo.delete_by_id(id)
-            waiter.tables.remove(table)
+            #waiter.tables.remove(id)
+            self.users_repo.save()
+            # self.users_repo.load()
             return waiter
 
     def delete_staff_by_id(self, id):
@@ -76,4 +83,9 @@ class UserService:
 
     def save(self):
         self.users_repo.save()
+
+    def get_waiter_financial_statement(self, key):
+        return self.users_repo.get_waiter_financial_statement(key)
+
+
 
